@@ -19,6 +19,20 @@ app.add_middleware(
 )
 
 
+@app.get("/schedule")
+async def get_race_schedule_of_current_year():
+    """
+    Get the race schedule for the current year.
+
+    Returns:
+        A dictionary containing event_dates and event_names for all races in the current year.
+    """
+    schedule = util.get_race_schedule(datetime.now().year).to_dict()
+    event_dates = schedule["EventDate"]
+    event_names = schedule["EventName"]
+    return {"event_dates": event_dates, "event_names": event_names}
+
+
 @app.get("/schedule/{year}")
 async def get_race_schedule(year: int):
     """
@@ -32,20 +46,6 @@ async def get_race_schedule(year: int):
     """
 
     schedule = util.get_race_schedule(year).to_dict()
-    event_dates = schedule["EventDate"]
-    event_names = schedule["EventName"]
-    return {"event_dates": event_dates, "event_names": event_names}
-
-
-@app.get("/schedule")
-async def get_race_schedule_of_current_year():
-    """
-    Get the race schedule for the current year.
-
-    Returns:
-        A dictionary containing event_dates and event_names for all races in the current year.
-    """
-    schedule = util.get_race_schedule(datetime.now().year).to_dict()
     event_dates = schedule["EventDate"]
     event_names = schedule["EventName"]
     return {"event_dates": event_dates, "event_names": event_names}
