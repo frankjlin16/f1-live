@@ -20,7 +20,7 @@ function App() {
         })
 
         if (!response.ok) {
-          throw new Error(`Request failed: ${response.status}`)
+          console.log(`Request failed: ${response.status}`)
         }
 
         const data: {
