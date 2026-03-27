@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -16,18 +18,34 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
 
 @app.get("/schedule/{year}")
 async def get_race_schedule(year: int):
+    """
+    Get the race schedule for a specific year.
+
+    Args:
+        year: The year for which to retrieve the race schedule.
+
+    Returns:
+        A dictionary containing event_dates and event_names for all races in the specified year.
+    """
+
     schedule = util.get_race_schedule(year).to_dict()
     event_dates = schedule["EventDate"]
     event_names = schedule["EventName"]
-    return { "event_dates": event_dates, "event_names": event_names}
+    return {"event_dates": event_dates, "event_names": event_names}
+
+
+@app.get("/schedule")
+async def get_race_schedule_of_current_year():
+    """
+    Get the race schedule for the current year.
+
+    Returns:
+        A dictionary containing event_dates and event_names for all races in the current year.
+    """
+    schedule = util.get_race_schedule(datetime.now().year).to_dict()
+    event_dates = schedule["EventDate"]
+    event_names = schedule["EventName"]
+    return {"event_dates": event_dates, "event_names": event_names}
