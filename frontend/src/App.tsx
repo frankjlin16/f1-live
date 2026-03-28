@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react"
 import {Dropdown} from "./components/Dropdown.tsx";
 
 function App() {
+  const years = Array.from({length: new Date().getFullYear() - 2010 + 1}, (_, i) => 2010 + i)
   const [events, setEvents] = useState<string[]>([])
   const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear())
   const [selectedEvent, setSelectedEvent] = useState<string>()
@@ -62,7 +63,7 @@ function App() {
 
   return (
     <>
-      <Dropdown label={"Select Year"} value={selectedYear} onChange={handleYearChange} options={[2024, 2025, 2026]}/>
+      <Dropdown label={"Select Year"} value={selectedYear} onChange={handleYearChange} options={years}/>
       <Dropdown label={"Select Event"} value={selectedEvent} onChange={handleEventChange} options={events}/>
     </>
   )
