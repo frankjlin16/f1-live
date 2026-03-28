@@ -58,12 +58,12 @@ function App() {
     }
 
     void loadEvent()
-  }, [selectedEvent, selectedYear]);
+  }, [selectedEvent]);
 
   return (
     <>
-      <Dropdown value={selectedYear} onChange={handleYearChange} options={[2024, 2025, 2026]}/>
-      <Dropdown value={selectedEvent} onChange={handleEventChange} options={events}/>
+      <Dropdown label={"Select Year"} value={selectedYear} onChange={handleYearChange} options={[2024, 2025, 2026]}/>
+      <Dropdown label={"Select Event"} value={selectedEvent} onChange={handleEventChange} options={events}/>
     </>
   )
 }
