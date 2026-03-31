@@ -28,6 +28,7 @@ env/
 
 # IDE
 .idea/
+*.iml
 
 # uv
 .python-version
