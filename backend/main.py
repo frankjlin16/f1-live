@@ -25,7 +25,7 @@ async def get_race_schedule_of_current_year():
     Get the race schedule for the current year.
 
     Returns:
-        A dictionary containing event_names for all races in the current year.
+        A list containing event_names for all races in the current year.
     """
     schedule = util.get_gp_schedule(datetime.now().year)
     event_names = schedule["EventName"].tolist()
