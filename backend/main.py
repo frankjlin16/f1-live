@@ -8,7 +8,7 @@ import util
 
 app = FastAPI()
 
-origins = ["http://localhost:5173"]
+origins = ["http://localhost:5173", "https://f1-live-lemon.vercel.app/"]
 
 # noinspection PyTypeChecker
 app.add_middleware(
